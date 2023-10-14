@@ -44,6 +44,7 @@ body{
 
 .top_right_btn{
     border: none!important;
+    color: #fff;
 }
 
 .top_right_btn img{
@@ -54,6 +55,7 @@ body{
 
 .top_right_menu ul li a{
     font-size: 14px;   
+
 }
 
 .top_right_menu ul li a i{
