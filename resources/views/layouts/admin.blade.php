@@ -17,7 +17,7 @@
                 <div class="col-md-3 top_right_menu text-end">
                     <div class="dropdown">
                       <button class="btn dropdown-toggle top_right_btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          <img src="images/avatar.png" class="img-fluid">
+                          <img src="{{asset('contents/admin')}}/images/avatar.png" class="img-fluid">
                           Saidul Islam Uzzal
                       </button>
                       <ul class="dropdown-menu">
@@ -36,7 +36,7 @@
             <div class="row">
                 <div class="col-md-2 sidebar_part">
                     <div class="user_part">
-                        <img class="" src="images/avatar.png" alt="avatar"/>
+                        <img class="" src="{{asset('contents/admin')}}/images/avatar.png" alt="avatar"/>
                         <h5>Saidul Islam Uzzal</h5>
                         <p><i class="fas fa-circle"></i> Online</p>
                     </div>
@@ -78,7 +78,7 @@
             </div>
         </div>
     </footer>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/custom.js"></script>
+    <script src="{{asset('contents/admin')}}/js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('contents/admin')}}/js/custom.js"></script>
   </body>
 </html>
