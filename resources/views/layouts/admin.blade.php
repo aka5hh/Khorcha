@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin Panel</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{asset('contents/admin')}}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{asset('contents/admin')}}/css/all.min.css">
+    <link rel="stylesheet" href="{{asset('contents/admin')}}/css/style.css">
   </head>
   <body>
     <header>
@@ -62,11 +62,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12 welcome_part">
-                            <p><span>Welcome Mr.</span> Saidul Islam Uzzal</p>
-                        </div>
-                    </div>
+                    @yield('page')
                 </div>
             </div>
         </div>
