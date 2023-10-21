@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\IncomeController;
+use App\Http\Controllers\IncomeCategoryController;
 use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\ExpenseCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +52,17 @@ Route::post('dashboard/income/restore', [IncomeController::class, 'restore']);
 Route::post('dashboard/income/delete', [IncomeController::class, 'delete']);
 
 
+Route::get('dashboard/income/category', [IncomeCategoryController::class, 'index']);
+Route::get('dashboard/income/category/add', [IncomeCategoryController::class, 'add']);
+Route::get('dashboard/income/category/edit', [IncomeCategoryController::class, 'edit']);
+Route::get('dashboard/income/category/view', [IncomeCategoryController::class, 'view']);
+Route::post('dashboard/income/category/sudmit', [IncomeCategoryController::class, 'insert']);
+Route::post('dashboard/income/category/update', [IncomeCategoryController::class, 'update']);
+Route::post('dashboard/income/category/softdelete', [IncomeCategoryController::class, 'softdelete']);
+Route::post('dashboard/income/category/restore', [IncomeCategoryController::class, 'restore']);
+Route::post('dashboard/income/category/delete', [IncomeCategoryController::class, 'delete']);
+
+
 Route::get('dashboard/expense', [ExpenseController::class, 'index']);
 Route::get('dashboard/expense/add', [ExpenseController::class, 'add']);
 Route::get('dashboard/expense/edit', [ExpenseController::class, 'edit']);
@@ -59,6 +72,17 @@ Route::post('dashboard/expense/update', [ExpenseController::class, 'update']);
 Route::post('dashboard/expense/softdelete', [ExpenseController::class, 'softdelete']);
 Route::post('dashboard/expense/restore', [ExpenseController::class, 'restore']);
 Route::post('dashboard/expense/delete', [ExpenseController::class, 'delete']);
+
+
+Route::get('dashboard/expense/category', [ExpenseCategoryController::class, 'index']);
+Route::get('dashboard/expense/category/add', [ExpenseCategoryController::class, 'add']);
+Route::get('dashboard/expense/category/edit', [ExpenseCategoryController::class, 'edit']);
+Route::get('dashboard/expense/category/view', [ExpenseCategoryController::class, 'view']);
+Route::post('dashboard/expense/category/sudmit', [ExpenseCategoryController::class, 'insert']);
+Route::post('dashboard/expense/category/update', [ExpenseCategoryController::class, 'update']);
+Route::post('dashboard/expense/category/softdelete', [ExpenseCategoryController::class, 'softdelete']);
+Route::post('dashboard/expense/category/restore', [ExpenseCategoryController::class, 'restore']);
+Route::post('dashboard/expense/category/delete', [ExpenseCategoryController::class, 'delete']);
 
 
 require __DIR__.'/auth.php';
