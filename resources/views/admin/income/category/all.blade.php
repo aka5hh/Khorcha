@@ -6,7 +6,7 @@
             <div class="card-header">
               <div class="row">
                   <div class="col-md-8 card_title_part">
-                      <i class="fab fa-gg-circle"></i>All Inceom Category
+                      <i class="fab fa-gg-circle"></i>All Income Category
                   </div>  
                   <div class="col-md-4 card_button_part">
                       <a href="{{url('dashboard/income/category/add')}}" class="btn btn-sm btn-dark"><i class="fas fa-plus-circle"></i>Add Category</a>
@@ -23,9 +23,10 @@
                   </tr>
                 </thead>
                 <tbody>
+                  @foreach($allData as $data)
                   <tr>
-                    <td>Saidul Islam Uzzal</td>
-                    <td>01710726035</td>
+                    <td>{{$data->incate_name}}</td>
+                    <td>{{$data->incate_remarks}}</td>
                     <td>
                         <div class="btn-group btn_group_manage" role="group">
                           <button type="button" class="btn btn-sm btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Manage</button>
@@ -37,6 +38,7 @@
                         </div>
                     </td>
                   </tr>
+                  @endforeach
                 </tbody>
               </table>
             </div>
