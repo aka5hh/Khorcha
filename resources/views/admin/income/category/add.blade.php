@@ -48,7 +48,7 @@
           <div class="row mb-3">
             <label class="col-sm-3 col-form-label col_form_label">Remakrs</label>
             <div class="col-sm-7">
-              <textarea class="form-control form_control" id="" name="remarks"></textarea>
+              <textarea class="form-control form_control" id="" name="remarks" >{{old('remarks')}}</textarea>
             </div>
           </div>
         </div>

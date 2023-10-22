@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use App\Models\IncomeCategory;
 use Carbon\Carbon;
 use Symfony\Component\HttpFoundation\Session\Session;
+
 use Illuminate\Support\Facades\Auth;
 
 class IncomeCategoryController extends Controller{
@@ -41,13 +42,22 @@ class IncomeCategoryController extends Controller{
         $slug = Str::slug($request->name, '-');
         $creator=Auth::user()->id;
       
-        IncomeCategory::insert([
+        $insert=IncomeCategory::insert([
             'incate_name'=>$request->name,
             'incate_remarks'=>$request->remarks,
             'incate_creator'=>$creator,
             'incate_slug'=>$slug,
             'created_at'=>Carbon::now()->toDateTimeString(),
         ]);
+
+        if($insert){
+            Session::flash('success','Succesfully added income category.');
+           return redirect('dashboard/income/category/add');
+        }else{
+            Session::flash('error','Opps operation failed.');
+            return redirect('dashboard/income/category/add');
+           
+        }
        
     }
     public function update(){
