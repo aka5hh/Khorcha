@@ -7,7 +7,6 @@ use Illuminate\Support\Str;
 use App\Models\IncomeCategory;
 use Carbon\Carbon;
 use Symfony\Component\HttpFoundation\Session\Session;
-
 use Illuminate\Support\Facades\Auth;
 
 class IncomeCategoryController extends Controller{
@@ -21,15 +20,15 @@ class IncomeCategoryController extends Controller{
     }
     public function add(){
         return view('admin.income.category.add');
-         
+
     }
     public function edit(){
         return view('admin.income.category.edit');
-        
+
     }
     public function view(){
         return view('admin.income.category.view');
-        
+
     }
     public function insert(Request $request){
         $this->validate($request,[
@@ -41,7 +40,7 @@ class IncomeCategoryController extends Controller{
       //$slug='IC'.uniqid(20);
         $slug = Str::slug($request->name, '-');
         $creator=Auth::user()->id;
-      
+
         $insert=IncomeCategory::insert([
             'incate_name'=>$request->name,
             'incate_remarks'=>$request->remarks,
@@ -51,25 +50,25 @@ class IncomeCategoryController extends Controller{
         ]);
 
         if($insert){
-            Session::flash('success','Succesfully added income category.');
+            Session()->flash('success','Successfully added income category.');
            return redirect('dashboard/income/category/add');
         }else{
-            Session::flash('error','Opps operation failed.');
+            Session()->flash('error','Opps operation failed.');
             return redirect('dashboard/income/category/add');
-           
+
         }
-       
+
     }
     public function update(){
-        
+
     }
     public function softdelete(){
-       
+
     }
     public function restore(){
-       
+
     }
     public function delete(){
-       
+
     }
 }
