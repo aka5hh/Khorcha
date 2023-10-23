@@ -26,8 +26,9 @@ class IncomeCategoryController extends Controller{
         return view('admin.income.category.edit');
 
     }
-    public function view(){
-        return view('admin.income.category.view');
+    public function view($slug){
+        $data=IncomeCategory::where('incate_status',1)->where('incate_slug',$slug)->firstorFail();
+        return view('admin.income.category.view', compact('data'));
 
     }
     public function insert(Request $request){

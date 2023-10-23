@@ -31,9 +31,9 @@
                         <div class="btn-group btn_group_manage" role="group">
                           <button type="button" class="btn btn-sm btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Manage</button>
                           <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{url('dashboard/user/view')}}">View</a></li>
-                            <li><a class="dropdown-item" href="{{url('dashboard/user/edit')}}">Edit</a></li>
-                            <li><a class="dropdown-item" href="{{url('dashboard/user/delete')}}">Delete</a></li>
+                            <li><a class="dropdown-item" href="{{url('dashboard/income/category/view/'.$data->incate_slug)}}">View</a></li>
+                            <li><a class="dropdown-item" href="{{url('dashboard/income/category/edit')}}">Edit</a></li>
+                            <li><a class="dropdown-item" href="{{url('dashboard/income/category/delete')}}">Delete</a></li>
                           </ul>
                         </div>
                     </td>
