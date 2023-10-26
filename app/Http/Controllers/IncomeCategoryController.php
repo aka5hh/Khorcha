@@ -60,7 +60,7 @@ class IncomeCategoryController extends Controller{
         }
 
     }
-    public function update(){
+    public function update(Request $request){
 
     }
     public function softdelete(){

@@ -14,4 +14,7 @@ class IncomeCategory extends Model
     public function creatorInfo(){
         return $this->belongsTo('App\Models\User','incate_creator','id');
     }
+    public function editorInfo(){
+        return $this->belongsTo('App\Models\User','incate_editor','id');
+    }
 }

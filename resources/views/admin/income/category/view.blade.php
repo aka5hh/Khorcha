@@ -36,8 +36,12 @@
                         <tr>
                           <td>Created Time</td>  
                           <td>:</td>  
-                          <td>{{$data->created_at->format('d-m-Y | h:i:s A |')}}{{$data->created_at->diffForHumans()}}</td>  
-                          
+                          @php
+                          $formattedDate = $data->created_at->format('d-m-Y | h:i:s A |');
+                          $timeDifference = $data->created_at->diffForHumans();
+                          @endphp
+                          <td>{{ $formattedDate }}{{ $timeDifference }}</td>
+                          {{-- <td>{{$data->created_at->format('d-m-Y | h:i:s A |')}}{{$data->created_at->diffForHumans()}}</td>   --}}
                         </tr>                      
                       </table>
                   </div>

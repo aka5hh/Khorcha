@@ -32,7 +32,7 @@
                           <button type="button" class="btn btn-sm btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Manage</button>
                           <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{url('dashboard/income/category/view/'.$data->incate_slug)}}">View</a></li>
-                            <li><a class="dropdown-item" href="{{url('dashboard/income/category/edit')}}">Edit</a></li>
+                            <li><a class="dropdown-item" href="{{url('dashboard/income/category/edit/')}}">Edit</a></li>
                             <li><a class="dropdown-item" href="{{url('dashboard/income/category/delete')}}">Delete</a></li>
                           </ul>
                         </div>
