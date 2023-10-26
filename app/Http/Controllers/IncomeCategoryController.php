@@ -17,13 +17,15 @@ class IncomeCategoryController extends Controller{
     public function index(){
          $allData=IncomeCategory::where('incate_status', 1)->orderBY('incate_id','DESC')->get();
          return view('admin.income.category.all',compact('allData'));
+
     }
     public function add(){
         return view('admin.income.category.add');
-
+    
     }
-    public function edit(){
-        return view('admin.income.category.edit');
+    public function edit($slug){
+        $data=IncomeCategory::where('incate_status',1)->where('incate_slug',$slug)->firstorFail();
+        return view('admin.income.category.edit', compact('data'));
 
     }
     public function view($slug){
@@ -56,12 +58,36 @@ class IncomeCategoryController extends Controller{
         }else{
             Session()->flash('error','Opps operation failed.');
             return redirect('dashboard/income/category/add');
-
         }
-
     }
     public function update(Request $request){
+        $id=$request['id'];
+        $this->validate($request,[
+            'name'=>'required|max:50|unique:income_categories,incate_name,'.$id.',incate_id'
+            ],[
+            'name.required'=>'Please enter income category name.'
+            ]);
 
+    
+          //$slug='IC'.uniqid(20);
+            $slug = Str::slug($request->name, '-');
+            $editor=Auth::user()->id;
+    
+            $update=IncomeCategory::where('incate_status',1)->where('incate_id',$id)->update([
+                'incate_name'=>$request->name,
+                'incate_remarks'=>$request->remarks,
+                'incate_editor'=>$editor,
+                'incate_slug'=>$slug,
+                'updated_at'=>Carbon::now()->toDateTimeString(),
+            ]);
+    
+            if($update){
+                Session()->flash('success','Successfully updated income category.');
+               return redirect('dashboard/income/category/view/'.$slug);
+            }else{
+                Session()->flash('error','Opps operation failed.');
+                return redirect('dashboard/income/category/edit'.$slug);
+                }
     }
     public function softdelete(){
 
