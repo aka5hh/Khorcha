@@ -49,9 +49,9 @@
                                             <button type="button" class="btn btn-sm btn-dark dropdown-toggle"
                                                 data-bs-toggle="dropdown" aria-expanded="false">Manage</button>
                                             <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="{{ url('dashboard/income/category/view/' . $data->incate_slug) }}">View</a></li>
+                                                <li><a class="dropdown-item" href="{{ url('dashboard/income/category/view/' . $data->incate_slug) }}">View</a> </li>
                                                 <li><a class="dropdown-item" href="{{ url('dashboard/income/category/edit/' . $data->incate_slug) }}">Edit</a></li>
-                                                <li><a class="dropdown-item" href="#" id="softDelete" data-bs-toggle="modal" data-bs-target="#softDeleteModal">Delete</a></li>
+                                                <li><a class="dropdown-item" href="#" id="softDelete" data-bs-toggle="modal" data-bs-target="#softDeleteModal" data-id="{{ $data->incate_id }}">Delete</a></li>
                                             </ul>
                                         </div>
                                     </td>
@@ -73,18 +73,23 @@
     <!-- delete modal code -->
     <div class="modal fade" id="softDeleteModal" tabindex="-1" aria-labelledby="softDeleteModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content modal_content">
-                <div class="modal-header modal_header">
-                    <h1 class="modal-title modal_title" id="softDeleteModalLabel">Modal title</h1>
+            <form action="{{url('dashboard/income/category/softdelete')}}" method="POST">
+                @csrf
+                <div class="modal-content modal_content">
+                    <div class="modal-header modal_header">
+                        <h1 class="modal-title modal_title" id="softDeleteModalLabel"><i
+                                class="fab fa-gg-circle"></i>Confirm Message</h1>
+                    </div>
+                    <div class="modal-body modal_body">
+                        Do you want to delete this income category?
+                        <input type="hidden" name="modal_id" id="modal_id" />
+                    </div>
+                    <div class="modal-footer modal_footer">
+                        <button type="submit" class="btn btn-sm btn-success">Confirm</button>
+                        <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Close</button>
+                    </div>
                 </div>
-                <div class="modal-body modal_body">
-                    ...
-                </div>
-                <div class="modal-footer modal_footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 @endsection
