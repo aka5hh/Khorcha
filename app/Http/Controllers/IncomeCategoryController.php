@@ -113,13 +113,23 @@ class IncomeCategoryController extends Controller{
 
         if($restore){
             Session()->flash('success','Successfully restored income category.');
-            return redirect('dashboard/recycle/income/category')  ;
+            return redirect('dashboard/recycle/income/category');
         }else{
             Session()->flash('error','Opps operation failed.');
-            return redirect('dashboard/recycle/income/category')  ;
+            return redirect('dashboard/recycle/income/category');
         }
     }
     public function delete(){
+        $id=$_POST['modal_id'];
+        $delete=IncomeCategory::where('incate_status',0)->where('incate_id',$id)->delete([]);
 
+    if($delete){
+        Session()->flash('success','Successfully permanently deleted income category.');
+        return redirect('dashboard/recycle/income/category');
+    }else{
+        Session()->flash('error','Opps operation failed.');
+        return redirect('dashboard/recycle/income/category');
     }
+}
+
 }

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{asset('contents/admin')}}/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{asset('contents/admin')}}/css/all.min.css">
     <link rel="stylesheet" href="{{asset('contents/admin')}}/css/style.css">
+    <link rel="stylesheet" href="{{asset('contents/admin')}}/css/datatables.min.css">
 </head>
 <body>
     <header>
@@ -86,6 +87,7 @@
     </footer>
     {{-- <script src="{{asset('contents/admin')}}/js/jquery-3.6.0.min.js"></script> --}}
     <script src="{{asset('contents/admin')}}/js/jquery-3.7.1.min.js"></script>
+    <script src="{{asset('contents/admin')}}/js/datatables.min.js"></script>
     <script src="{{asset('contents/admin')}}/js/bootstrap.bundle.min.js"></script>
     <script src="{{asset('contents/admin')}}/js/custom.js"></script>
 </body>
