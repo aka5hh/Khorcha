@@ -28,3 +28,40 @@ $(document).ready(function (){
      });
 });
 
+//Data table code
+$(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+
+$('#alltableinfo').DataTable({
+    "paging":true,
+    "lengthChange":true,
+    "searching":true,
+    "ordering":false,
+    "info":true,
+    "autoWidth":false,
+});
+
+ $('#allTableDesc').DataTable({
+    "paging":true,
+    "lengthChange":false,
+    "searching":true,
+    "ordering":false,
+    "order":[[0, "desc"]],
+    "info":true,
+    "autoWidth":false,
+ });
+
+
+$(function(){
+ $('#date').datepicker({
+    autoclose: true,
+    format: 'yyyy-mm-dd',
+    todayHighlight: true,
+ });
+ $('#startdate').datepicker({
+    autoclose: true,
+    format: 'yyyy-mm-dd',
+    todayHighlight: true,
+ });
+});

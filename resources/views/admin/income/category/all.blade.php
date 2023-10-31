@@ -31,7 +31,7 @@
                         </div>
                         <div class="col-md-2"></div>
                     </div>
-                    <table class="table table-bordered table-striped table-hover custom_table">
+                    <table id="alltableinfo" class="table table-bordered table-striped table-hover custom_table">
                         <thead class="table-dark">
                             <tr>
                                 <th>Name</th>
