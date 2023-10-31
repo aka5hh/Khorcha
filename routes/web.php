@@ -91,8 +91,11 @@ Route::post('dashboard/expense/category/restore', [ExpenseCategoryController::cl
 Route::post('dashboard/expense/category/delete', [ExpenseCategoryController::class, 'delete']);
 
 
-Route::post('dashboard/report', [ReportController::class, 'index']);
+Route::get('dashboard/report', [ReportController::class, 'index']);
 
-Route::post('dashboard/recycle', [RecycleController::class, 'index']);
+Route::get('dashboard/recycle', [RecycleController::class, 'index']);
+Route::get('dashboard/recycle/user', [RecycleController::class, 'user']);
+Route::get('dashboard/recycle/income', [RecycleController::class, 'income']);
+Route::get('dashboard/recycle/income/category', [RecycleController::class, 'income_category']);
 
 require __DIR__.'/auth.php';

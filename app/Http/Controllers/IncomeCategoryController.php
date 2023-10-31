@@ -105,7 +105,19 @@ class IncomeCategoryController extends Controller{
             }
     }
     public function restore(){
+        $id=$_POST['modal_id'];
+        $restore=IncomeCategory::where('incate_status',0)->where('incate_id',$id)->update([
+            'incate_status'=>1,
+            'updated_at'=>Carbon::now()->toDateTimeString(),
+        ]);
 
+        if($restore){
+            Session()->flash('success','Successfully restored income category.');
+            return redirect('dashboard/recycle/income/category')  ;
+        }else{
+            Session()->flash('error','Opps operation failed.');
+            return redirect('dashboard/recycle/income/category')  ;
+        }
     }
     public function delete(){
 

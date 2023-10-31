@@ -14,4 +14,17 @@ $(document).ready(function (){
      });
 });
 
+$(document).ready(function (){   
+    $(document).on("click","#restore",function(){
+        var restoreId = $(this).data('id');
+        $(".modal_body #modal_id").val(restoreId);
+    });
+});
+
+$(document).ready(function (){   
+    $(document).on("click","#delete",function(){
+        var deleteId = $(this).data('id');
+        $(".modal_body #modal_id").val(deleteId);
+     });
+});
 
