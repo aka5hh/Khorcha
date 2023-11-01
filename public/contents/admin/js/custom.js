@@ -34,11 +34,11 @@ $(document).ready( function () {
 } );
 
 $('#alltableinfo').DataTable({
-    "paging":true,
-    "lengthChange":true,
-    "searching":true,
+    "paging":false,
+    "lengthChange":false,
+    "searching":false,
     "ordering":false,
-    "info":true,
+    "info":false,
     "autoWidth":false,
 });
 
