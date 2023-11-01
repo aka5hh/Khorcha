@@ -60,7 +60,7 @@
                         <div class="row mb-3 {{ $errors->has('amount') ? ' has-error' : '' }}">
                             <label class="col-sm-3 col-form-label col_form_label">Income Amount<span class="req_star">*</span>:</label>
                             <div class="col-sm-7">                                
-                                <input type="text" class="form-control form_control" id="" name="amount" value="{{ old('amount') }}">
+                                <input type="number" class="form-control form_control" id="" name="amount" value="{{ old('amount') }}">
                                 @if ($errors->has('amount'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('amount') }}</strong>
@@ -68,26 +68,20 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="row mb-3 {{ $errors->has('data') ? ' has-error' : '' }}">
+                        <div class="row mb-3 {{ $errors->has('date') ? ' has-error' : '' }}">
                           <label class="col-sm-3 col-form-label col_form_label">Income Date<span class="req_star">*</span>:</label>
                           <div class="col-sm-7">                              
-                              <input type="text" class="form-control form_control" id="" name="data" value="{{ old('data') }}">
-                              @if ($errors->has('data'))
+                              <input type="text" class="form-control form_control" id="date" name="date" value="{{ old('data') }}">
+                              @if ($errors->has('date'))
                                   <span class="invalid-feedback" role="alert">
-                                      <strong>{{ $errors->first('data') }}</strong>
+                                      <strong>{{ $errors->first('date') }}</strong>
                                   </span>
                               @endif
                           </div>
                       </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label col_form_label">Remakrs</label>
-                            <div class="col-sm-7">
-                                <textarea class="form-control form_control" id="" name="remarks">{{ old('remarks') }}</textarea>
-                            </div>
-                        </div>
                     </div>
                     <div class="card-footer text-center">
-                        <button type="submit" class="btn btn-sm btn-dark">Submit</button>
+                        <button type="submit" class="btn btn-sm btn-dark">SUBMIT</button>
                     </div>
                 </div>
             </form>
