@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\IncomeCategory;
 use Carbon\Carbon;
-use Symfony\Component\HttpFoundation\Session\Session;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 
 class IncomeCategoryController extends Controller{
@@ -17,22 +17,22 @@ class IncomeCategoryController extends Controller{
     public function index(){
          $allData=IncomeCategory::where('incate_status', 1)->orderBY('incate_id','DESC')->get();
          return view('admin.income.category.all',compact('allData'));
-
     }
+
     public function add(){
         return view('admin.income.category.add');
-    
     }
+
     public function edit($slug){
         $data=IncomeCategory::where('incate_status',1)->where('incate_slug',$slug)->firstorFail();
         return view('admin.income.category.edit', compact('data'));
-
     }
+
     public function view($slug){
         $data=IncomeCategory::where('incate_status',1)->where('incate_slug',$slug)->firstorFail();
         return view('admin.income.category.view', compact('data'));
-
     }
+
     public function insert(Request $request){
         $this->validate($request,[
         'name'=>'required|max:50|unique:income_categories,incate_name'
@@ -60,6 +60,7 @@ class IncomeCategoryController extends Controller{
             return redirect('dashboard/income/category/add');
         }
     }
+
     public function update(Request $request){
         $id=$request['id'];
         $this->validate($request,[
@@ -82,13 +83,14 @@ class IncomeCategoryController extends Controller{
             ]);
     
             if($update){
-                Session()->flash('success','Successfully updated income category.');
+                Session::flash('success','Successfully updated income category.');
                return redirect('dashboard/income/category/view/'.$slug);
             }else{
-                Session()->flash('error','Opps operation failed.');
+                Session::flash('error','Opps operation failed.');
                 return redirect('dashboard/income/category/edit'.$slug);
-                }
+            }
     }
+
     public function softdelete(){
         $id=$_POST['modal_id'];
         $soft=IncomeCategory::where('incate_status',1)->where('incate_id',$id)->update([
@@ -97,13 +99,14 @@ class IncomeCategoryController extends Controller{
         ]);
 
         if($soft){
-            Session()->flash('success','Successfully Deleted income category.');
+            Session::flash('success','Successfully Deleted income category.');
            return redirect('dashboard/income/category');
         }else{
-            Session()->flash('error','Opps operation failed.');
+            Session::flash('error','Opps operation failed.');
             return redirect('dashboard/income/category');
-            }
+        }
     }
+
     public function restore(){
         $id=$_POST['modal_id'];
         $restore=IncomeCategory::where('incate_status',0)->where('incate_id',$id)->update([
@@ -112,24 +115,25 @@ class IncomeCategoryController extends Controller{
         ]);
 
         if($restore){
-            Session()->flash('success','Successfully restored income category.');
+            Session::flash('success','Successfully restored income category.');
             return redirect('dashboard/recycle/income/category');
         }else{
-            Session()->flash('error','Opps operation failed.');
+            Session::sh('error','Opps operation failed.');
             return redirect('dashboard/recycle/income/category');
         }
     }
+
     public function delete(){
         $id=$_POST['modal_id'];
         $delete=IncomeCategory::where('incate_status',0)->where('incate_id',$id)->delete([]);
 
     if($delete){
-        Session()->flash('success','Successfully permanently deleted income category.');
+        Session::flash('success','Successfully permanently deleted income category.');
         return redirect('dashboard/recycle/income/category');
-    }else{
-        Session()->flash('error','Opps operation failed.');
+        }else{
+        Session::flash('error','Opps operation failed.');
         return redirect('dashboard/recycle/income/category');
+        }
     }
-}
 
 }
