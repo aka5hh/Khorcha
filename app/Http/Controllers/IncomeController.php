@@ -17,20 +17,21 @@ class IncomeController extends Controller
     }
 
     public function index(){
-        $all=Income::where('income_status',1)->orderBy('income_id','DESC')->paginate(5);
-         return view ('admin.income.main.all',compact('all'));
+        $all=Income::where('income_status',1)->orderBy('income_date','DESC')->get(); //paginate(2);
+         return view('admin.income.main.all',compact('all'));
     }
 
     public function add(){
-        return view ('admin.income.main.add');
+        return view('admin.income.main.add');
     }
 
     public function edit(){
-        return view ('admin.income.main.edit');
+        return view('admin.income.main.edit');
     }
 
-    public function view(){
-        return view ('admin.income.main.view');
+    public function view($slug){
+        $data=Income::where('income_status',1)->where('income_slug',$slug)->firstOrFail();
+        return view('admin.income.main.view',compact('data'));       
     }
 
     public function insert(Request $request){

@@ -6,11 +6,10 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-8 card_title_part">
-                            <i class="fab fa-gg-circle"></i>View Income Category Information
+                            <i class="fab fa-gg-circle"></i>View Income Information
                         </div>
                         <div class="col-md-4 card_button_part">
-                            <a href="{{ url('dashboard/income/category') }}" class="btn btn-sm btn-dark"><i
-                                    class="fas fa-th"></i>All Category</a>
+                            <a href="{{ url('dashboard/income') }}" class="btn btn-sm btn-dark"><i class="fas fa-th"></i>All INCOME</a>
                         </div>
                     </div>
                 </div>
@@ -36,14 +35,24 @@
                         <div class="col-md-8">
                             <table class="table table-bordered table-striped table-hover custom_view_table">
                                 <tr>
-                                    <td>Income Category</td>
+                                    <td>Title</td>
                                     <td>:</td>
-                                    <td>{{ $data->incate_name }}</td>
+                                    <td>{{ $data->income_title }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Remarks</td>
+                                    <td>Category</td>
                                     <td>:</td>
-                                    <td>{{ $data->incate_remarks }}</td>
+                                    <td>{{ $data->categoryInfo->incate_name }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Date</td>
+                                    <td>:</td>
+                                    <td>{{date('d-M-Y', strtotime($data->income_date,2))}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Amount</td>
+                                    <td>:</td>
+                                    <td>{{ number_format($data->income_amount,2) }}</td>
                                 </tr>
                                 <tr>
                                     <td>Creator</td>
