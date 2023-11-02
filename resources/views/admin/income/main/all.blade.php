@@ -43,10 +43,10 @@
                         <tbody>
                             @foreach ($all as $data)
                                 <tr>
-                                    <td>{{ $data->income_date }}</td>
+                                    <td>{{ date('d-M-Y',strtotime($data->income_date))}}</td>
                                     <td>{{ $data->income_title }}</td>
                                     <td>{{ $data->categoryInfo->incate_name }}</td>
-                                    <td>{{ $data->income_amount }}</td>
+                                    <td>{{ number_format($data->income_amount,2) }}</td>
                                     <td>
                                         <div class="btn-group btn_group_manage" role="group">
                                             <button type="button" class="btn btn-sm btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Manage</button>
@@ -61,6 +61,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{-- {{ $all->links()}} //pagination --}}
                 </div>
                 <div class="card-footer">
                     <div class="btn-group" role="group" aria-label="Button group">
