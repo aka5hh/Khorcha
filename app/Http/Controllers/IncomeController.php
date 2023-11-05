@@ -113,7 +113,7 @@ class IncomeController extends Controller
 
     public function softdelete(){
         $id=$_POST['modal_id'];
-        $soft=Income::where('income_status',)->where('income_id',$id)->update([
+        $soft=Income::where('income_status',1)->where('income_id',$id)->update([
             'income_status'=>0,
             'updated_at'=>Carbon::now()->toDateTimeString(),
         ]);
@@ -144,7 +144,16 @@ class IncomeController extends Controller
     }
 
     public function delete(){
-       
+        $id=$_POST['modal_id'];
+        $delete=Income::where('income_status',0)->where('income_id',$id)->delete([]);
+
+        if($delete){
+            Session::flash('success','Successfully Permanently Deleted income.');
+           return redirect('dashboard/recycle/income');
+        }else{
+            Session::flash('error','Opps operation failed.');
+            return redirect('dashboard/recycle/income');
+        }
     }
 
 }

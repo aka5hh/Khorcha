@@ -118,7 +118,7 @@ class IncomeCategoryController extends Controller{
             Session::flash('success','Successfully restored income category.');
             return redirect('dashboard/recycle/income/category');
         }else{
-            Session::sh('error','Opps operation failed.');
+            Session::flash('error','Opps operation failed.');
             return redirect('dashboard/recycle/income/category');
         }
     }
