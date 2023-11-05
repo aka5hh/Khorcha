@@ -71,8 +71,8 @@ Route::post('dashboard/income/category/delete', [IncomeCategoryController::class
 
 Route::get('dashboard/expense', [ExpenseController::class, 'index']);
 Route::get('dashboard/expense/add', [ExpenseController::class, 'add']);
-Route::get('dashboard/expense/edit', [ExpenseController::class, 'edit']);
-Route::get('dashboard/expense/view', [ExpenseController::class, 'view']);
+Route::get('dashboard/expense/edit/{slug}', [ExpenseController::class, 'edit']);
+Route::get('dashboard/expense/view/{slug}', [ExpenseController::class, 'view']);
 Route::post('dashboard/expense/sudmit', [ExpenseController::class, 'insert']);
 Route::post('dashboard/expense/update', [ExpenseController::class, 'update']);
 Route::post('dashboard/expense/softdelete', [ExpenseController::class, 'softdelete']);
@@ -82,8 +82,8 @@ Route::post('dashboard/expense/delete', [ExpenseController::class, 'delete']);
 
 Route::get('dashboard/expense/category', [ExpenseCategoryController::class, 'index']);
 Route::get('dashboard/expense/category/add', [ExpenseCategoryController::class, 'add']);
-Route::get('dashboard/expense/category/edit', [ExpenseCategoryController::class, 'edit']);
-Route::get('dashboard/expense/category/view', [ExpenseCategoryController::class, 'view']);
+Route::get('dashboard/expense/category/edit/{slug}', [ExpenseCategoryController::class, 'edit']);
+Route::get('dashboard/expense/category/view/{slug}', [ExpenseCategoryController::class, 'view']);
 Route::post('dashboard/expense/category/sudmit', [ExpenseCategoryController::class, 'insert']);
 Route::post('dashboard/expense/category/update', [ExpenseCategoryController::class, 'update']);
 Route::post('dashboard/expense/category/softdelete', [ExpenseCategoryController::class, 'softdelete']);
@@ -97,5 +97,7 @@ Route::get('dashboard/recycle', [RecycleController::class, 'index']);
 Route::get('dashboard/recycle/user', [RecycleController::class, 'user']);
 Route::get('dashboard/recycle/income', [RecycleController::class, 'income']);
 Route::get('dashboard/recycle/income/category', [RecycleController::class, 'income_category']);
+//Route::get('dashboard/recycle/expense', [RecycleController::class, 'expense']);
+Route::get('dashboard/recycle/expense/category', [RecycleController::class, 'expense_category']);
 
 require __DIR__.'/auth.php';

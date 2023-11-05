@@ -1,16 +1,19 @@
 @extends('layouts.admin')
 @section('content')
+    @php
+        $all = App\Models\ExpenseCategory::where('expcate_status', 0)->orderby('expcate_id', 'DESC')->get();
+    @endphp
     <div class="row">
         <div class="col-md-12">
             <div class="card mb-3">
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-8 card_title_part">
-                            <i class="fab fa-gg-circle"></i>All Expense Category Information
+                            <i class="fab fa-gg-circle"></i>Recycle Expense Category Information
                         </div>
                         <div class="col-md-4 card_button_part">
-                            <a href="{{ url('dashboard/expense/category/add') }}" class="btn btn-sm btn-dark"><i
-                                    class="fas fa-plus-circle"></i>Add Category</a>
+                            <a href="{{ url('dashboard/recycle') }}" class="btn btn-sm btn-dark"><i
+                                    class="fas fa-th"></i>Recycle Bin</a>
                         </div>
                     </div>
                 </div>
@@ -31,7 +34,7 @@
                         </div>
                         <div class="col-md-2"></div>
                     </div>
-                    <table id="alltableinfo" class="table table-bordered table-striped table-hover custom_table">
+                    <table class="table table-bordered table-striped table-hover custom_table">
                         <thead class="table-dark">
                             <tr>
                                 <th>Name</th>
@@ -45,15 +48,8 @@
                                     <td>{{ $data->expcate_name }}</td>
                                     <td>{{ $data->expcate_remarks }}</td>
                                     <td>
-                                        <div class="btn-group btn_group_manage" role="group">
-                                            <button type="button" class="btn btn-sm btn-dark dropdown-toggle"
-                                                data-bs-toggle="dropdown" aria-expanded="false">Manage</button>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="{{ url('dashboard/expense/category/view/' . $data->expcate_slug) }}">View</a> </li>
-                                                <li><a class="dropdown-item" href="{{ url('dashboard/expense/category/edit/' . $data->expcate_slug) }}">Edit</a></li>
-                                                <li><a class="dropdown-item" href="#" id="softDelete" data-bs-toggle="modal" data-bs-target="#softDeleteModal" data-id="{{ $data->expcate_id }}">Delete</a></li>
-                                            </ul>
-                                        </div>
+                                        <a  href="#" id="restore" data-bs-toggle= "modal" data-bs-target="#restoreModal" data-id="{{ $data->expcate_id }}"><i class="fas fa-recycle fs-5 text-success fw-bold mx-3"></i></a> 
+                                        <a  href="#" id="delete" data-bs-toggle= "modal" data-bs-target="#deleteModal" data-id="{{ $data->expcate_id }}"><i class="fas fa-trash fs-5 text-danger fw-bold"></i></a> 
                                     </td>
                                 </tr>
                             @endforeach
@@ -70,18 +66,40 @@
             </div>
         </div>
     </div>
-    <!-- delete modal code -->
-    <div class="modal fade" id="softDeleteModal" tabindex="-1" aria-labelledby="softDeleteModalLabel" aria-hidden="true">
+    <!-- retore modal code -->
+    <div class="modal fade" id="restoreModal" tabindex="-1" aria-labelledby="restoreModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <form action="{{url('dashboard/expense/category/softdelete')}}" method="POST">
+            <form method="post" action="{{ url('dashboard/expense/category/restore') }}">
                 @csrf
                 <div class="modal-content modal_content">
                     <div class="modal-header modal_header">
-                        <h1 class="modal-title modal_title" id="softDeleteModalLabel"><i
+                        <h1 class="modal-title modal_title" id="restoreModalLabel"><i
                                 class="fab fa-gg-circle"></i>Confirm Message</h1>
                     </div>
                     <div class="modal-body modal_body">
                         Do you want to delete this expense category?
+                        <input type="hidden" name="modal_id" id="modal_id" />
+                    </div>
+                    <div class="modal-footer modal_footer">
+                        <button type="submit" class="btn btn-sm btn-success">Confirm</button>
+                        <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- permanent delete modal code -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <form method="post" action="{{ url('dashboard/expense/category/delete') }}">
+                @csrf
+                <div class="modal-content modal_content">
+                    <div class="modal-header modal_header">
+                        <h1 class="modal-title modal_title" id="deleteModalLabel"><i
+                                class="fab fa-gg-circle"></i>Confirm Message</h1>
+                    </div>
+                    <div class="modal-body modal_body">
+                        Do you want to permanently delete this expense category?
                         <input type="hidden" name="modal_id" id="modal_id" />
                     </div>
                     <div class="modal-footer modal_footer">
