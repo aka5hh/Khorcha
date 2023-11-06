@@ -1,16 +1,19 @@
 @extends('layouts.admin')
 @section('content')
+@php
+    $all = App\Models\Income::where('income_status', 0)->orderby('income_date', 'DESC')->get();
+@endphp
     <div class="row">
         <div class="col-md-12">
             <div class="card mb-3">
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-8 card_title_part">
-                            <i class="fab fa-gg-circle"></i>All Income Information
+                            <i class="fab fa-gg-circle"></i> Recycle Income Information
                         </div>
                         <div class="col-md-4 card_button_part">
-                            <a href="{{ url('dashboard/income/add') }}" class="btn btn-sm btn-dark"><i class="fas fa-plus-circle"></i>Add Income</a>
-                            <a href="{{ url('dashboard/income/category') }}" class="btn btn-sm btn-dark"><i class="fas fa-plus-circle"></i>Income Category</a>
+                            <a href="{{ url('dashboard/recycle') }}" class="btn btn-sm btn-dark"><i
+                                class="fas fa-th"></i>Recycle Bin</a>
                         </div>
                     </div>
                 </div>
@@ -47,22 +50,15 @@
                                     <td>{{ date('d-M-Y',strtotime($data->income_date))}}</td>
                                     <td>{{ $data->income_title }}</td>
                                     <td>{{ $data->categoryInfo->incate_name }}</td>
-                                    <td>{{ number_format($data->income_amount,2) }}</td>
+                                    <td>{{ number_format($data->income_amount,2) }}</td>                                  
                                     <td>
-                                        <div class="btn-group btn_group_manage" role="group">
-                                            <button type="button" class="btn btn-sm btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Manage</button>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="{{ url('dashboard/income/view/' . $data->income_slug) }}">View</a> </li>
-                                                <li><a class="dropdown-item" href="{{ url('dashboard/income/edit/' . $data->income_slug) }}">Edit</a></li>
-                                                <li><a class="dropdown-item" href="#" id="softDelete" data-bs-toggle="modal" data-bs-target="#softDeleteModal" data-id="{{ $data->income_id }}">Delete</a></li>
-                                            </ul>
-                                        </div>
-                                    </td>
+                                        <a  href="#" id="restore" data-bs-toggle= "modal" data-bs-target="#restoreModal" data-id="{{ $data->income_id }}"><i class="fas fa-recycle fs-5 text-success fw-bold mx-3"></i></a> 
+                                        <a  href="#" id="delete" data-bs-toggle= "modal" data-bs-target="#deleteModal" data-id="{{ $data->income_id }}"><i class="fas fa-trash fs-5 text-danger fw-bold"></i></a> 
+                                    </td>                                    
                                 </tr>
                             @endforeach
                         </tbody>
-                    </table>
-                    {{-- {{ $all->links()}} //pagination --}}
+                    </table>                
                 </div>
                 <div class="card-footer">
                     <div class="btn-group" role="group" aria-label="Button group">
@@ -74,18 +70,41 @@
             </div>
         </div>
     </div>
-    <!-- delete modal code -->
-    <div class="modal fade" id="softDeleteModal" tabindex="-1" aria-labelledby="softDeleteModalLabel" aria-hidden="true">
+    <!-- retore modal code -->
+    <div class="modal fade" id="restoreModal" tabindex="-1" aria-labelledby="restoreModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <form action="{{url('dashboard/income/softdelete')}}" method="POST">
+            <form method="post" action="{{ url('dashboard/income/restore') }}">
                 @csrf
                 <div class="modal-content modal_content">
                     <div class="modal-header modal_header">
-                        <h1 class="modal-title modal_title" id="softDeleteModalLabel"><i class="fab fa-gg-circle"></i>Confirm Message</h1>
+                        <h1 class="modal-title modal_title" id="restoreModalLabel"><i
+                                class="fab fa-gg-circle"></i>Confirm Message</h1>
                     </div>
                     <div class="modal-body modal_body">
-                        Do you want to delete this income ?
-                        <input type="hidden" name="modal_id" id="modal_id"/>
+                        Do you want to delete this income?
+                        <input type="hidden" name="modal_id" id="modal_id" />
+                    </div>
+                    <div class="modal-footer modal_footer">
+                        <button type="submit" class="btn btn-sm btn-success">Confirm</button>
+                        <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- permanent delete modal code -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <form method="post" action="{{ url('dashboard/income/delete') }}">
+                @csrf
+                <div class="modal-content modal_content">
+                    <div class="modal-header modal_header">
+                        <h1 class="modal-title modal_title" id="deleteModalLabel"><i
+                                class="fab fa-gg-circle"></i>Confirm Message</h1>
+                    </div>
+                    <div class="modal-body modal_body">
+                        Do you want to permanently delete this income ?
+                        <input type="hidden" name="modal_id" id="modal_id" />
                     </div>
                     <div class="modal-footer modal_footer">
                         <button type="submit" class="btn btn-sm btn-success">Confirm</button>
