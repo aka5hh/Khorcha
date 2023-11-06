@@ -6,11 +6,11 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-8 card_title_part">
-                            <i class="fab fa-gg-circle"></i>All Income Information
+                            <i class="fab fa-gg-circle"></i>All Expense Information
                         </div>
                         <div class="col-md-4 card_button_part">
-                            <a href="{{ url('dashboard/income/add') }}" class="btn btn-sm btn-dark"><i class="fas fa-plus-circle"></i>Add Income</a>
-                            <a href="{{ url('dashboard/income/category') }}" class="btn btn-sm btn-dark"><i class="fas fa-plus-circle"></i>Income Category</a>
+                            <a href="{{ url('dashboard/expense/add') }}" class="btn btn-sm btn-dark"><i class="fas fa-plus-circle"></i>Add expense</a>
+                            <a href="{{ url('dashboard/expense/category') }}" class="btn btn-sm btn-dark"><i class="fas fa-plus-circle"></i>Expense Category</a>
                         </div>
                     </div>
                 </div>
@@ -41,28 +41,27 @@
                                 <th>Manage</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody>                          
                             @foreach ($all as $data)
                                 <tr>
-                                    <td>{{ date('d-M-Y',strtotime($data->income_date))}}</td>
-                                    <td>{{ $data->income_title }}</td>
-                                    <td>{{ $data->categoryInfo->incate_name }}</td>
-                                    <td>{{ number_format($data->income_amount,2) }}</td>
+                                    <td>{{ date('d-M-Y',strtotime($data->expense_date))}}</td>
+                                    <td>{{ $data->expense_title }}</td>
+                                    {{-- <td>{{ $data->categoryInfo->expcate_name }}</td> --}}
+                                    <td>{{ number_format($data->expense_amount,2) }}</td>
                                     <td>
                                         <div class="btn-group btn_group_manage" role="group">
                                             <button type="button" class="btn btn-sm btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Manage</button>
                                             <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="{{ url('dashboard/income/view/' . $data->income_slug) }}">View</a> </li>
-                                                <li><a class="dropdown-item" href="{{ url('dashboard/income/edit/' . $data->income_slug) }}">Edit</a></li>
-                                                <li><a class="dropdown-item" href="#" id="softDelete" data-bs-toggle="modal" data-bs-target="#softDeleteModal" data-id="{{ $data->income_id }}">Delete</a></li>
+                                                <li><a class="dropdown-item" href="{{ url('dashboard/expense/view/' . $data->expense_slug) }}">View</a> </li>
+                                                <li><a class="dropdown-item" href="{{ url('dashboard/expense/edit/' . $data->expense_slug) }}">Edit</a></li>
+                                                <li><a class="dropdown-item" href="#" id="softDelete" data-bs-toggle="modal" data-bs-target="#softDeleteModal" data-id="{{ $data->expense_id }}">Delete</a></li>
                                             </ul>
                                         </div>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
-                    </table>
-                    {{-- {{ $all->links()}} //pagination --}}
+                    </table>              
                 </div>
                 <div class="card-footer">
                     <div class="btn-group" role="group" aria-label="Button group">
@@ -77,14 +76,14 @@
     <!-- delete modal code -->
     <div class="modal fade" id="softDeleteModal" tabindex="-1" aria-labelledby="softDeleteModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <form action="{{url('dashboard/income/softdelete')}}" method="POST">
+            <form action="{{url('dashboard/expense/softdelete')}}" method="POST">
                 @csrf
                 <div class="modal-content modal_content">
                     <div class="modal-header modal_header">
                         <h1 class="modal-title modal_title" id="softDeleteModalLabel"><i class="fab fa-gg-circle"></i>Confirm Message</h1>
                     </div>
                     <div class="modal-body modal_body">
-                        Do you want to delete this income ?
+                        Do you want to delete this expense ?
                         <input type="hidden" name="modal_id" id="modal_id"/>
                     </div>
                     <div class="modal-footer modal_footer">

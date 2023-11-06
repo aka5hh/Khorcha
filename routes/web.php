@@ -97,7 +97,7 @@ Route::get('dashboard/recycle', [RecycleController::class, 'index']);
 Route::get('dashboard/recycle/user', [RecycleController::class, 'user']);
 Route::get('dashboard/recycle/income', [RecycleController::class, 'income']);
 Route::get('dashboard/recycle/income/category', [RecycleController::class, 'income_category']);
-//Route::get('dashboard/recycle/expense', [RecycleController::class, 'expense']);
+Route::get('dashboard/recycle/expense', [RecycleController::class, 'expense']);
 Route::get('dashboard/recycle/expense/category', [RecycleController::class, 'expense_category']);
 
 require __DIR__.'/auth.php';

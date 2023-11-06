@@ -18,6 +18,7 @@ class Expense extends Model
     public function creatorInfo(){
         return $this->belongsTo('App\Models\User','expense_creator','id');
     }
+
     public function editorInfo(){
         return $this->belongsTo('App\Models\User','expense_editor','id');
     }

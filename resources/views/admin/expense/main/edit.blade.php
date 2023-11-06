@@ -2,16 +2,16 @@
 @section('content')
     <div class="row">
         <div class="col-md-12 ">
-            <form method="post" action="{{ url('dashboard/income/update') }}">
+            <form method="post" action="{{ url('dashboard/expense/update') }}">
                 @csrf
                 <div class="card mb-3">
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-8 card_title_part">
-                                <i class="fab fa-gg-circle"></i>Update Income Information
+                                <i class="fab fa-gg-circle"></i>Update Expense Information
                             </div>
                             <div class="col-md-4 card_button_part">
-                                <a href="{{ url('dashboard/income') }}" class="btn btn-sm btn-dark"><i class="fas fa-th"></i>All Income</a>
+                                <a href="{{ url('dashboard/expense') }}" class="btn btn-sm btn-dark"><i class="fas fa-th"></i>All Expense</a>
                             </div>
                         </div>
                     </div>
@@ -33,11 +33,11 @@
                             <div class="col-md-2"></div>
                         </div>
                         <div class="row mb-3 {{ $errors->has('title') ? ' has-error' : '' }}">
-                            <label class="col-sm-3 col-form-label col_form_label">Income Title<span class="req_star">*</span>:</label>
+                            <label class="col-sm-3 col-form-label col_form_label">Expense Title<span class="req_star">*</span>:</label>
                             <div class="col-sm-7">
-                                <input type="hidden" name="id" value="{{$data->income_id}}"/>
-                                <input type="hidden" name="slug" value="{{$data->income_slug}}"/>
-                                <input type="text" class="form-control form_control" id="" name="title" value="{{$data->income_title}}">
+                                <input type="hidden" name="id" value="{{$data->expense_id}}"/>
+                                <input type="hidden" name="slug" value="{{$data->expense_slug}}"/>
+                                <input type="text" class="form-control form_control" id="" name="title" value="{{$data->expense_title}}">
                                 @if ($errors->has('title'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('title') }}</strong>
@@ -46,15 +46,15 @@
                             </div>
                         </div>
                         <div class="row mb-3 {{ $errors->has('category') ? ' has-error' : '' }}">
-                            <label class="col-sm-3 col-form-label col_form_label">Income Category<span class="req_star">*</span>:</label>
+                            <label class="col-sm-3 col-form-label col_form_label">Expense Category<span class="req_star">*</span>:</label>
                             <div class="col-sm-7">
                               @php
-                                $allCate=App\Models\IncomeCategory::where('incate_status',1)->orderBY('incate_name','ASC')->get();                               
+                                $allCate=App\Models\ExpenseCategory::where('expcate_status',1)->orderBY('expcate_name','ASC')->get();                               
                               @endphp
                                 <select class="form-control form_control" id="" name="category">
                                   <option value="">Choose Category</option>
                                   @foreach ($allCate as $cate )
-                                  <option value="{{$cate->incate_id}}" @if ($cate->incate_id==$data->incate_id) selected @endif >{{$cate->incate_name}}</option>
+                                  <option value="{{$cate->expcate_id}}" @if ($cate->expcate_id==$data->expcate_id) selected @endif >{{$cate->expcate_name}}</option>
                                   @endforeach
                                 </select>
                                 @if ($errors->has('category'))
@@ -65,9 +65,9 @@
                             </div>
                         </div>
                         <div class="row mb-3 {{ $errors->has('amount') ? ' has-error' : '' }}">
-                            <label class="col-sm-3 col-form-label col_form_label">Income Amount<span class="req_star">*</span>:</label>
+                            <label class="col-sm-3 col-form-label col_form_label">Expense Amount<span class="req_star">*</span>:</label>
                             <div class="col-sm-7">                                
-                                <input type="number" class="form-control form_control" id="" name="amount" value="{{$data->income_amount}}">
+                                <input type="number" class="form-control form_control" id="" name="amount" value="{{$data->expense_amount}}">
                                 @if ($errors->has('amount'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('amount') }}</strong>
@@ -76,9 +76,9 @@
                             </div>
                         </div>
                         <div class="row mb-3 {{ $errors->has('date') ? ' has-error' : '' }}">
-                          <label class="col-sm-3 col-form-label col_form_label">Income Date<span class="req_star">*</span>:</label>
+                          <label class="col-sm-3 col-form-label col_form_label">Expense Date<span class="req_star">*</span>:</label>
                           <div class="col-sm-7">                              
-                              <input type="text" class="form-control form_control" id="date" name="date" value="{{$data->income_date}}">
+                              <input type="text" class="form-control form_control" id="date" name="date" value="{{$data->expense_date}}">
                               @if ($errors->has('date'))
                                   <span class="invalid-feedback" role="alert">
                                       <strong>{{ $errors->first('date') }}</strong>

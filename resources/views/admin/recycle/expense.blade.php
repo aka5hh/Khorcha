@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
 @php
-    $all = App\Models\Income::where('income_status', 0)->orderby('income_date', 'DESC')->get();
+    $all = App\Models\Expense::where('expense_status', 0)->orderby('expense_date', 'DESC')->get();
 @endphp
     <div class="row">
         <div class="col-md-12">
@@ -9,7 +9,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-8 card_title_part">
-                            <i class="fab fa-gg-circle"></i> Recycle Income Information
+                            <i class="fab fa-gg-circle"></i> Recycle Expense Information
                         </div>
                         <div class="col-md-4 card_button_part">
                             <a href="{{ url('dashboard/recycle') }}" class="btn btn-sm btn-dark"><i
@@ -47,13 +47,13 @@
                         <tbody>
                             @foreach ($all as $data)
                                 <tr>
-                                    <td>{{ date('d-M-Y',strtotime($data->income_date))}}</td>
-                                    <td>{{ $data->income_title }}</td>
-                                    <td>{{ $data->categoryInfo->incate_name }}</td>
-                                    <td>{{ number_format($data->income_amount,2) }}</td>                                  
+                                    <td>{{ date('d-M-Y',strtotime($data->expense_date))}}</td>
+                                    <td>{{ $data->expense_title }}</td>
+                                    <td>{{ $data->categoryInfo->expcate_name }}</td>
+                                    <td>{{ number_format($data->expense_amount,2) }}</td>                                  
                                     <td>
-                                        <a  href="#" id="restore" data-bs-toggle= "modal" data-bs-target="#restoreModal" data-id="{{ $data->income_id }}"><i class="fas fa-recycle fs-5 text-success fw-bold mx-3"></i></a> 
-                                        <a  href="#" id="delete" data-bs-toggle= "modal" data-bs-target="#deleteModal" data-id="{{ $data->income_id }}"><i class="fas fa-trash fs-5 text-danger fw-bold"></i></a> 
+                                        <a  href="#" id="restore" data-bs-toggle= "modal" data-bs-target="#restoreModal" data-id="{{ $data->expense_id }}"><i class="fas fa-recycle fs-5 text-success fw-bold mx-3"></i></a> 
+                                        <a  href="#" id="delete" data-bs-toggle= "modal" data-bs-target="#deleteModal" data-id="{{ $data->expense_id }}"><i class="fas fa-trash fs-5 text-danger fw-bold"></i></a> 
                                     </td>                                    
                                 </tr>
                             @endforeach
@@ -73,7 +73,7 @@
     <!-- retore modal code -->
     <div class="modal fade" id="restoreModal" tabindex="-1" aria-labelledby="restoreModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <form method="post" action="{{ url('dashboard/income/restore') }}">
+            <form method="post" action="{{ url('dashboard/expense/restore') }}">
                 @csrf
                 <div class="modal-content modal_content">
                     <div class="modal-header modal_header">
@@ -81,7 +81,7 @@
                                 class="fab fa-gg-circle"></i>Confirm Message</h1>
                     </div>
                     <div class="modal-body modal_body">
-                        Do you want to delete this income?
+                        Do you want to delete this expense?
                         <input type="hidden" name="modal_id" id="modal_id" />
                     </div>
                     <div class="modal-footer modal_footer">
@@ -95,7 +95,7 @@
     <!-- permanent delete modal code -->
     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <form method="post" action="{{ url('dashboard/income/delete') }}">
+            <form method="post" action="{{ url('dashboard/expense/delete') }}">
                 @csrf
                 <div class="modal-content modal_content">
                     <div class="modal-header modal_header">
@@ -103,7 +103,7 @@
                                 class="fab fa-gg-circle"></i>Confirm Message</h1>
                     </div>
                     <div class="modal-body modal_body">
-                        Do you want to permanently delete this income ?
+                        Do you want to permanently delete this expense ?
                         <input type="hidden" name="modal_id" id="modal_id" />
                     </div>
                     <div class="modal-footer modal_footer">
