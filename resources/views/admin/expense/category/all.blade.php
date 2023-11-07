@@ -9,8 +9,8 @@
                             <i class="fab fa-gg-circle"></i>All Expense Category Information
                         </div>
                         <div class="col-md-4 card_button_part">
-                            <a href="{{ url('dashboard/expense/category/add') }}" class="btn btn-sm btn-dark"><i
-                                    class="fas fa-plus-circle"></i>Add Category</a>
+                            <a href="{{ url('dashboard/expense') }}" class="btn btn-sm btn-dark"><i class="fas fa-arrow-left"></i>BACK</a>
+                            <a href="{{ url('dashboard/expense/category/add') }}" class="btn btn-sm btn-dark"><i class="fas fa-plus-circle"></i>Add Category</a>
                         </div>
                     </div>
                 </div>

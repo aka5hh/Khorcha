@@ -6,11 +6,11 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-8 card_title_part">
-                            <i class="fab fa-gg-circle"></i>All Income Category
+                            <i class="fab fa-gg-circle"></i>All Income Category Information
                         </div>
                         <div class="col-md-4 card_button_part">
-                            <a href="{{ url('dashboard/income/category/add') }}" class="btn btn-sm btn-dark"><i
-                                    class="fas fa-plus-circle"></i>Add Category</a>
+                            <a href="{{ url('dashboard/income') }}" class="btn btn-sm btn-dark"><i class="fas fa-arrow-left"></i>BACK</a>
+                            <a href="{{ url('dashboard/income/category/add') }}" class="btn btn-sm btn-dark"><i class="fas fa-plus-circle"></i>Add Category</a>
                         </div>
                     </div>
                 </div>

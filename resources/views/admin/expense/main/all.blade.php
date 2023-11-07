@@ -9,8 +9,8 @@
                             <i class="fab fa-gg-circle"></i>All Expense Information
                         </div>
                         <div class="col-md-4 card_button_part">
-                            <a href="{{ url('dashboard/expense/add') }}" class="btn btn-sm btn-dark"><i class="fas fa-plus-circle"></i>Add expense</a>
-                            <a href="{{ url('dashboard/expense/category') }}" class="btn btn-sm btn-dark"><i class="fas fa-plus-circle"></i>Expense Category</a>
+                            <a href="{{ url('dashboard/expense/category') }}" class="btn btn-sm btn-dark"><i class="fas fa-th-list"></i>Expense Category</a>
+                            <a href="{{ url('dashboard/expense/add') }}" class="btn btn-sm btn-dark"><i class="fas fa-plus-circle"></i>Add Expense</a>
                         </div>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                                 <tr>
                                     <td>{{ date('d-M-Y',strtotime($data->expense_date))}}</td>
                                     <td>{{ $data->expense_title }}</td>
-                                    {{-- <td>{{ $data->categoryInfo->expcate_name }}</td> --}}
+                                    <td>{{ $data->categoryInfo->expcate_name }}</td>
                                     <td>{{ number_format($data->expense_amount,2) }}</td>
                                     <td>
                                         <div class="btn-group btn_group_manage" role="group">

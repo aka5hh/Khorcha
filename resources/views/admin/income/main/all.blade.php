@@ -9,8 +9,8 @@
                             <i class="fab fa-gg-circle"></i>All Income Information
                         </div>
                         <div class="col-md-4 card_button_part">
-                            <a href="{{ url('dashboard/income/add') }}" class="btn btn-sm btn-dark"><i class="fas fa-plus-circle"></i>Add Income</a>
-                            <a href="{{ url('dashboard/income/category') }}" class="btn btn-sm btn-dark"><i class="fas fa-plus-circle"></i>Income Category</a>
+                            <a href="{{ url('dashboard/income/category') }}" class="btn btn-sm btn-dark"><i class="fas fa-th-list"></i>Income Category</a>
+                            <a href="{{ url('dashboard/income/add') }}" class="btn btn-sm btn-dark"><i class="fas fa-plus-circle"></i>ADD INCOME</a>
                         </div>
                     </div>
                 </div>
