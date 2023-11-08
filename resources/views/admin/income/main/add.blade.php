@@ -45,15 +45,15 @@
                         </div>
                         <div class="row mb-3 {{ $errors->has('category') ? ' has-error' : '' }}">
                             <label class="col-sm-3 col-form-label col_form_label">Income Category<span class="req_star">*</span>:</label>
-                            <div class="col-sm-7">
-                              @php
-                                $allCate=App\Models\IncomeCategory::where('incate_status',1)->orderBY('incate_name','ASC')->get();                               
-                              @endphp
+                                <div class="col-sm-7">
+                                @php
+                                    $allCate=App\Models\IncomeCategory::where('incate_status',1)->orderBY('incate_name','ASC')->get();                               
+                                @endphp
                                 <select class="form-control form_control" id="" name="category">
-                                  <option value="">Choose Category</option>
-                                  @foreach ($allCate as $cate )
-                                  <option value="{{$cate->incate_id}}">{{$cate->incate_name}}</option>
-                                  @endforeach
+                                    <option value="">Choose Category</option>
+                                    @foreach ($allCate as $cate )
+                                    <option value="{{$cate->incate_id}}">{{$cate->incate_name}}</option>
+                                    @endforeach
                                 </select>
                                 @if ($errors->has('category'))
                                     <span class="invalid-feedback" role="alert">
