@@ -38,12 +38,13 @@ class RegisteredUserController extends Controller
         ]);
 
         $slug='U'.uniqid(20);
-        $username=$slug=Str::slug($request['name'],'-').'_'.rand(100000,10000000);
-        
+        $username=Str::slug($request['name'],'_').'_'.rand(1000,10000);
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'username' => $username,
             'slug' => $slug,
 
         ]);
