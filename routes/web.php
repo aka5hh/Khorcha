@@ -11,6 +11,8 @@ use App\Http\Controllers\ExpenseCategoryController;
 
 use App\Http\Controllers\ReportController;
 
+use App\Http\Controllers\ArchiveController;
+
 use App\Http\Controllers\RecycleController;
 
 
@@ -89,6 +91,10 @@ Route::post('dashboard/expense/category/update', [ExpenseCategoryController::cla
 Route::post('dashboard/expense/category/softdelete', [ExpenseCategoryController::class, 'softdelete']);
 Route::post('dashboard/expense/category/restore', [ExpenseCategoryController::class, 'restore']);
 Route::post('dashboard/expense/category/delete', [ExpenseCategoryController::class, 'delete']);
+
+
+Route::get('dashboard/archive', [ArchiveController::class, 'index']);
+Route::get('dashboard/archive/{month}', [ArchiveController::class, 'month']);
 
 
 Route::get('dashboard/report', [ReportController::class, 'index']);
