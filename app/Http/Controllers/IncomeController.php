@@ -18,7 +18,7 @@ class IncomeController extends Controller
 
     public function index(){
         $all=Income::where('income_status',1)->orderBy('income_date','DESC')->get(); //paginate(2);
-         return view('admin.income.main.all',compact('all'));
+        return view('admin.income.main.all',compact('all'));
     }
 
     public function add(){
@@ -66,7 +66,7 @@ class IncomeController extends Controller
     
             if($insert){
                 Session::flash('success','Successfully added income.');
-               return redirect('dashboard/income/add');
+                return redirect('dashboard/income/add');
             }else{
                 Session::flash('error','Opps operation failed.');
                 return redirect('dashboard/income/add');
@@ -104,7 +104,7 @@ class IncomeController extends Controller
     
             if($update){
                 Session::flash('success','Successfully update income.');
-               return redirect('dashboard/income/view/'.$slug);
+                return redirect('dashboard/income/view/'.$slug);
             }else{
                 Session::flash('error','Opps operation failed.');
                 return redirect('dashboard/income/edit/'.$slug);
@@ -120,7 +120,7 @@ class IncomeController extends Controller
 
         if($soft){
             Session::flash('success','Successfully Deleted income.');
-           return redirect('dashboard/income');
+            return redirect('dashboard/income');
         }else{
             Session::flash('error','Opps operation failed.');
             return redirect('dashboard/income');
@@ -136,7 +136,7 @@ class IncomeController extends Controller
 
         if($restore){
             Session::flash('success','Successfully restore income.');
-           return redirect('dashboard/recycle/income');
+            return redirect('dashboard/recycle/income');
         }else{
             Session::flash('error','Opps operation failed.');
             return redirect('dashboard/recycle/income');
@@ -149,7 +149,7 @@ class IncomeController extends Controller
 
         if($delete){
             Session::flash('success','Successfully Permanently Deleted income.');
-           return redirect('dashboard/recycle/income');
+            return redirect('dashboard/recycle/income');
         }else{
             Session::flash('error','Opps operation failed.');
             return redirect('dashboard/recycle/income');

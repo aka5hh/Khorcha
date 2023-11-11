@@ -26,12 +26,15 @@ class UserController extends Controller{
         return view('admin.user.add');
     }
 
-    public function edit(){
-        return view('admin.user.edit');
+    public function edit($slug)
+    {
+        $data = User::where('status',1)->where('slug',$slug)->firstOrfail();
+        return view('admin.user.edit',compact('data'));
     }
-
-    public function view(){
-        return view('admin.user.view');
+    public function view($slug)
+    {
+        $data = User::where('status',1)->where('slug',$slug)->firstOrfail();
+        return view('admin.user.view',compact('data'));
     }
 
     public function insert(Request $request){
