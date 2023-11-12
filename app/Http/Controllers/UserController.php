@@ -15,6 +15,8 @@ class UserController extends Controller{
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('superadmin');
+        $this->middleware('admin');
     }
 
     public function index(){
@@ -78,8 +80,46 @@ class UserController extends Controller{
             }
     }
 
-    public function update(){
-        
+    public function update(Request $request){
+        $this->validate($request,[
+            'name'=>'required|max:50',
+            'email'=>'required|email|max:50|unique:users',
+            'username'=>'required',
+            'password'=>'required|min:8',
+            'confirm_password'=>'required_with:password|same:password',
+            'role'=>'required',
+
+            ],[
+            'name.required'=>'Please enter name.',
+            'email.required'=>'Please select user email.',
+            'username.required'=>'Please enter username.',
+            'password.required'=>'Please enter password.',
+            'confirm_password.required'=>'Please enter confirm password.',
+            'role.required'=>'Please select role.',
+            ]);
+            $id=$request['id'];
+            $slug=$request['slug'];
+            $editor=Auth::user()->id;
+
+            $update=User::where('status',1)->where('id',$id)->update([
+                'name'=>$request['name'],
+                'phone'=>$request['phone'],
+                'email'=>$request['email'],
+                'username'=>$request['username'],
+                'password'=>Hash::make($request['username']),
+                'role'=>$request['role'],
+                'slug'=>$slug,
+                'updated_at'=>Carbon::now()->toDateTimeString(),
+                
+            ]);
+
+            if($update){
+                Session::flash('success','Successfully Updated User Information.');
+               return redirect('dashboard/user/add'.$slug);
+            }else{
+                Session::flash('error','Opps operation failed.');
+                return redirect('dashboard/user/add'.$slug);
+            }
     }
 
     public function softdelete(){

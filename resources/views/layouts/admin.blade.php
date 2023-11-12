@@ -47,8 +47,12 @@
                     <div class="menu">
                         <ul>
                             <li><a href="{{url('dashboard')}}"><i class="fas fa-home"></i> Dashboard</a></li>
+                            @if(Auth::user()->role<='1')
                             <li><a href="{{url('dashboard/user')}}"><i class="fas fa-user-circle"></i> Users</a></li>
+                            @endif
+                            @if (Auth::user()->role<='2')
                             <li><a href="{{url('dashboard/income')}}"><i class="fas fa-wallet"></i> Income</a></li>
+                            @endif
                             <li><a href="{{url('dashboard/expense')}}"><i class="fas fa-coins"></i> Expense</a></li>
                             <li><a href="{{url('dashboard/report')}}"><i class="fas fa-file-alt"></i> Reports</a></li>
                             <li><a href="{{url('dashboard/recycle')}}"><i class="fas fa-trash-alt"></i> Recycle Bin</a></li>
