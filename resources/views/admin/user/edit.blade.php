@@ -2,7 +2,7 @@
 @section('content')
   <div class="row">
       <div class="col-md-12 ">
-          <form method="post" action="{{url('dashboard/user/update')}}">
+          <form method="post" action="{{url('dashboard/user/update')}}"  enctype="multipart/form-data">
             @csrf
               <div class="card mb-3">
                 <div class="card-header">
@@ -71,33 +71,11 @@
                           @endif
                       </div>
                     </div>
-                    <div class="row mb-3{{ $errors->has('password') ? ' has-error' : '' }}">
-                      <label class="col-sm-3 col-form-label col_form_label">Password<span class="req_star">*</span>:</label>
-                      <div class="col-sm-7">
-                        <input type="password" class="form-control form_control" id="" name="password">
-                        @if ($errors->has('password'))
-                            <span class="invalid-feedback" role="alert">
-                              <strong>{{ $errors->first('password') }}</strong>
-                            </span>
-                          @endif
-                      </div>
-                    </div>
-                    <div class="row mb-3{{ $errors->has('confirm_password') ? ' has-error' : '' }}">
-                      <label class="col-sm-3 col-form-label col_form_label">Confirm-Password<span class="req_star">*</span>:</label>
-                      <div class="col-sm-7">
-                        <input type="password" class="form-control form_control" id="" name="confirm_password">
-                        @if ($errors->has('confirm_password'))
-                            <span class="invalid-feedback" role="alert">
-                              <strong>{{ $errors->first('confirm_password') }}</strong>
-                            </span>
-                          @endif
-                      </div>
-                    </div>
                     <div class="row mb-3{{ $errors->has('role') ? ' has-error' : '' }}">
                       <label class="col-sm-3 col-form-label col_form_label">User Role<span class="req_star">*</span>:</label>
                       <div class="col-sm-4">
                         @php
-                          $allRole=App\Models\Role::where('role_status',1)->orderBy('role_name','ASC')->get();
+                          $allRole=App\Models\Role::where('role_status',1)->orderBy('role_id','ASC')->get();
                         @endphp
                         <select class="form-control form_control" id="" name="role">
                           <option>Select Role</option>
@@ -115,7 +93,14 @@
                     <div class="row mb-3">
                       <label class="col-sm-3 col-form-label col_form_label">Photo:</label>
                       <div class="col-sm-4">
-                        <input type="file" class="form-control form_control" id="" name="photo">
+                        <input type="file" class="form-control form_control" id="" name="pic">
+                      </div>
+                      <div class="col-md-2">
+                        @if($data->photo!='')
+                          <img height="100" src="{{asset('uploads/users/'.$data->photo)}}" alt="User Photo"/>
+                        @else
+                          <img height="100" src="{{asset('contents/admin')}}/images/avatar.png" alt="avatar"/>
+                        @endif
                       </div>
                     </div>
                 </div>

@@ -45,7 +45,7 @@
                         </tr>
                         <tr>
                           <td>Photo</td>  
-                          <td>:</td>  
+                          <td>{{$data->photo}}</td>  
                           <td>
                               <img class="img200" src="images/avatar.jpg" alt=""/>  
                           </td>  
