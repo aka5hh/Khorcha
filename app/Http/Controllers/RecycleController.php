@@ -19,7 +19,7 @@ class RecycleController extends Controller
         
     }
     public function user(){
-        
+        return view('admin.recycle.user');
     }
     public function income(){
         return view('admin.recycle.income');

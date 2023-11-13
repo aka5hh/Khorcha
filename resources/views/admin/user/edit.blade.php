@@ -35,6 +35,8 @@
                     <div class="row mb-3 {{ $errors->has('name') ? ' has-error' : '' }}">
                       <label class="col-sm-3 col-form-label col_form_label">Name<span class="req_star">*</span>:</label>
                       <div class="col-sm-7">
+                        <input type="hidden" name="id" value="{{$data->id}}">
+                        <input type="hidden" name="slug" value="{{$data->slug}}">
                         <input type="text" class="form-control form_control" id="" name="name" value="{{$data->name}}">
                         @if ($errors->has('name'))
                             <span class="invalid-feedback" role="alert">
@@ -63,7 +65,7 @@
                     <div class="row mb-3{{ $errors->has('usernmae') ? ' has-error' : '' }}">
                       <label class="col-sm-3 col-form-label col_form_label">Username<span class="req_star">*</span>:</label>
                       <div class="col-sm-7">
-                        <input type="text" class="form-control form_control" id="" name="username" value="{{$data->username}}">
+                        <input type="text" class="form-control form_control" id="" name="username" value="{{$data->username}}" disabled>
                         @if ($errors->has('username'))
                             <span class="invalid-feedback" role="alert">
                               <strong>{{ $errors->first('username') }}</strong>

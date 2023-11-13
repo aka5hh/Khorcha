@@ -44,11 +44,15 @@
                           <td>{{$data->roleInfo->role_name}}</td>  
                         </tr>
                         <tr>
-                          <td>Photo</td>  
-                          <td>{{$data->photo}}</td>  
+                          <td>Photo</td>
+                          <td>:</td>  
                           <td>
-                              <img class="img200" src="images/avatar.jpg" alt=""/>  
-                          </td>  
+                            @if ($data->photo!='')
+                            <img class="img200" src="{{ asset('uploads/users/' .$data->photo) }}" alt="User Photo"/>
+                            @else
+                            <img class="img200" src="images/avatar.jpg" alt=""/>  
+                            @endif  
+                          </td> 
                         </tr>
                       </table>
                   </div>
