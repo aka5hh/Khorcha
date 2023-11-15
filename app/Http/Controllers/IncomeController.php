@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Exports\IncomeExport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Income;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
-
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class IncomeController extends Controller
 {
@@ -157,4 +159,14 @@ class IncomeController extends Controller
         }
     }
 
+    
+    public function pdf(){
+        $all=Income::where('income_status',1)->orderBy('income_date','DESC')->get();
+        $pdf = PDF::loadView('admin.income.main.pdf',compact('all'));
+        return $pdf->download('income_'.time().'.pdf');
+    }
+
+    public function excel(){
+        return Excel::download(new IncomeExport, 'income.xlsx');
+    }
 }

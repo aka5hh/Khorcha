@@ -66,9 +66,9 @@
                 </div>
                 <div class="card-footer">
                     <div class="btn-group" role="group" aria-label="Button group">
-                        <button type="button" class="btn btn-sm btn-dark">Print</button>
-                        <button type="button" class="btn btn-sm btn-secondary">PDF</button>
-                        <button type="button" class="btn btn-sm btn-dark">Excel</button>
+                        <button type="button" onclick="window.print()" class="btn btn-sm btn-dark">Print</button>
+                        <a href="{{url('dashboard/income/pdf')}}"  class="btn btn-sm btn-secondary">PDF</a>
+                        <a href="{{url('dashboard/income/excel')}}" type="button" class="btn btn-sm btn-dark">Excel</a>
                     </div>
                 </div>
             </div>
