@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 @section('content')
+@php
+  $all = App\Models\User::where('status', 0)->orderby('id', 'DESC')->get()
+@endphp
   <div class="row">
       <div class="col-md-12">
           <div class="card mb-3">
@@ -7,9 +10,6 @@
               <div class="row">
                   <div class="col-md-8 card_title_part">
                       <i class="fab fa-gg-circle"></i>All User Information
-                  </div>  
-                  <div class="col-md-4 card_button_part">
-                      <a href="{{url('dashboard/user/add')}}" class="btn btn-sm btn-dark"><i class="fas fa-plus-circle"></i>Add User</a>
                   </div>  
               </div>
             </div>
@@ -42,28 +42,59 @@
                       @endif
                     </td>
                     <td>
-                        <div class="btn-group btn_group_manage" role="group">
-                          <button type="button" class="btn btn-sm btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Manage</button>
-                          <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{url('dashboard/user/view/' . $data->slug)}}">View</a></li>
-                            <li><a class="dropdown-item" href="{{url('dashboard/user/edit/' . $data->slug)}}">Edit</a></li>
-                            <li><a class="dropdown-item" href="{{url('dashboard/user/delete')}}">Delete</a></li>
-                          </ul>
-                        </div>
-                    </td>
+                      <a  href="#" id="restore" data-bs-toggle= "modal" data-bs-target="#restoreModal" data-id="{{ $data->id }}"><i class="fas fa-recycle fs-5 text-success fw-bold mx-3"></i></a> 
+                      <a  href="#" id="delete" data-bs-toggle= "modal" data-bs-target="#deleteModal" data-id="{{ $data->id }}"><i class="fas fa-trash fs-5 text-danger fw-bold"></i></a> 
+                  </td>  
                   </tr>
                   @endforeach
                 </tbody>
               </table>
-            </div>
-            <div class="card-footer">
-              <div class="btn-group" role="group" aria-label="Button group">
-                <button type="button" class="btn btn-sm btn-dark">Print</button>
-                <button type="button" class="btn btn-sm btn-secondary">PDF</button>
-                <button type="button" class="btn btn-sm btn-dark">Excel</button>
-              </div>
             </div>  
           </div>
       </div>
   </div>
+  <!-- retore modal code -->
+  <div class="modal fade" id="restoreModal" tabindex="-1" aria-labelledby="restoreModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <form method="post" action="{{ url('dashboard/user/restore') }}">
+            @csrf
+            <div class="modal-content modal_content">
+                <div class="modal-header modal_header">
+                    <h1 class="modal-title modal_title" id="restoreModalLabel"><i
+                            class="fab fa-gg-circle"></i>Confirm Message</h1>
+                </div>
+                <div class="modal-body modal_body">
+                    Do you want to delete this user?
+                    <input type="hidden" name="modal_id" id="modal_id" />
+                </div>
+                <div class="modal-footer modal_footer">
+                    <button type="submit" class="btn btn-sm btn-success">Confirm</button>
+                    <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- permanent delete modal code -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <form method="post" action="{{ url('dashboard/user/delete') }}">
+            @csrf
+            <div class="modal-content modal_content">
+                <div class="modal-header modal_header">
+                    <h1 class="modal-title modal_title" id="deleteModalLabel"><i
+                            class="fab fa-gg-circle"></i>Confirm Message</h1>
+                </div>
+                <div class="modal-body modal_body">
+                    Do you want to permanently delete this user ?
+                    <input type="hidden" name="modal_id" id="modal_id" />
+                </div>
+                <div class="modal-footer modal_footer">
+                    <button type="submit" class="btn btn-sm btn-success">Confirm</button>
+                    <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 @endsection
