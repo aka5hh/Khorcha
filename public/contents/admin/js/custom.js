@@ -43,10 +43,10 @@ $('#alltableinfo').DataTable({
 });
 
  $('#allTableDesc').DataTable({
-    "paging":true,
+    "paging":false,
     "lengthChange":false,
     "searching":true,
-    "ordering":false,
+    "ordering":true,
     "order":[[0, "desc"]],
     "info":true,
     "autoWidth":false,
