@@ -42,6 +42,11 @@
             <x-primary-button class="ml-3">
                 {{ __('Log in') }}
             </x-primary-button>
+         
+            <button type="button" class="btn btn-primary">
+                <a href="{{ route('google.redirect') }}" > Login with Google </a>
+            </button>
+            
         </div>
     </form>
 </x-guest-layout>

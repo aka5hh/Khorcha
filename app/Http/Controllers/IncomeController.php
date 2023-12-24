@@ -170,3 +170,4 @@ class IncomeController extends Controller
         return Excel::download(new IncomeExport, 'income.xlsx');
     }
 }
+   
